@@ -1,0 +1,27 @@
+[
+  {
+    "file": "SHA256SUMS.txt",
+    "sha256": "FC495A6D211F62E10385570CD4695C2FC423B78099D77CD5C461E2D69DDBA3AD",
+    "matches": true
+  },
+  {
+    "file": "tfcg_results_v0.1.0.zip",
+    "sha256": "EA6D13AD3D9910829CE4CC2A8554F6267D609C6071F1321D93067BAE02387CA6",
+    "matches": true
+  },
+  {
+    "file": "tfcg_case_data_v0.1.0.zip",
+    "sha256": "EB68C853C1DE53EF19A412CEC0D04B84AA8A77D8737DE9FACDB2D8D4276AA86E",
+    "matches": true
+  },
+  {
+    "file": "tfcg_source_v0.1.0.zip",
+    "sha256": "9499DA0F17E8529D83D6A3E8AB97A59B08A7D1ED8B5B867C8DB6AD10DF354C8C",
+    "matches": true
+  },
+  {
+    "file": "RELEASE_README.md",
+    "sha256": "0E5FEFDC3E26ACD6250775A52329815396835E1AD51300E995BFE65508CC3096",
+    "matches": true
+  }
+]

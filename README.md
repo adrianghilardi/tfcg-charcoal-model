@@ -2,7 +2,7 @@
 
 Reproduce annual woodland biomass, wood harvest and potential charcoal production for a historical TFCG/MJUMITA case study in Tanzania. The repository preserves the supplied DINAMICA EGO model, provides a tested Python implementation, and separates the original equations from proposed corrections.
 
-**Status: version 0.1.0 release candidate, 17 September 2026.** Repository: [adrianghilardi/tfcg-charcoal-model](https://github.com/adrianghilardi/tfcg-charcoal-model), a personal repository outside the MoFuSS organization. Zenodo deposition is being prepared in Adrian's personal account outside the MoFuSS community; no DOI is claimed until verified. Code: MIT. Contributed analytical data and numerical outputs: CC BY 4.0.
+**Status: version 0.1.0 release candidate, 17 September 2026.** Repository: [adrianghilardi/tfcg-charcoal-model](https://github.com/adrianghilardi/tfcg-charcoal-model), a personal repository outside the MoFuSS organization. The [Zenodo archive](https://doi.org/10.5281/zenodo.22822183) contains exact source, inputs and complete numerical outputs in Adrian's personal account, with no community assignment. The archived source is tag `v0.1.0`, commit `2f89e809af639fad648fb244950e462d86341852`; subsequent main-branch changes document publication and post-release checks. Code: MIT. Contributed analytical data and numerical outputs: CC BY 4.0.
 
 ## What has been reproduced
 
@@ -11,11 +11,13 @@ Reproduce annual woodland biomass, wood harvest and potential charcoal productio
 - A clean Python environment, using only the minimal case-study bundle, reproduced 607,876 array elements exactly across all 13 baseline/audit experiments. The arrays include outputs, diagnostics and exported parameter draws.
 - Main corrected experiments use 1,000 realizations over 72 years. A 100-realization audit isolates equation and distribution changes. Tests also cover mass balance, harvest timing, thresholds, growth behaviour, random sampling and an exact memory optimization.
 
+A fresh public GitHub checkout also reproduced the complete 1,000-realization corrected suite exactly: 3,036,676 checked array elements.
+
 These checks establish computational reproducibility from the **delivered analytical rasters**. They do not reconstruct the unpublished raw field/remote-sensing processing, independently validate woodland recovery, or recover the old manuscript's missing 100-realization ensemble. That ensemble's table is superseded by explicitly identified new experiments.
 
 ## Install
 
-Use Python 3.12. The full local verification environment was CPython 3.12.14 on Windows x86-64. [GitHub Actions checks passed on Windows and Linux](https://github.com/adrianghilardi/tfcg-charcoal-model/actions/runs/35298026545), including nine unit tests, the archived baseline, an eight-realization audit and figure generation. The full 1,000-realization analysis was run locally on Windows.
+Use Python 3.12. The full local verification environment was CPython 3.12.14 on Windows x86-64. [GitHub Actions checks passed on Windows and Linux](https://github.com/adrianghilardi/tfcg-charcoal-model/actions/runs/35298362324), including nine unit tests, the archived baseline, an eight-realization audit and figure generation. The full 1,000-realization analysis was run locally on Windows.
 
 ```shell
 python -m venv .venv
@@ -33,7 +35,7 @@ The pinned file records the tested dependencies. It is a version lock, not a whe
 
 ## Obtain and verify the case study
 
-The repository includes `data/tfcg_case_data_v0.1.0.zip`; the same archive will be deposited in Zenodo. Extract it into `data/external/ulaya`. Do not replace it with a similarly named calendar: the required raster is `InRaster/cosecha24.tif` supplied by the author.
+The repository includes `data/tfcg_case_data_v0.1.0.zip`; the identical archive is [available from Zenodo](https://zenodo.org/records/22822183/files/tfcg_case_data_v0.1.0.zip?download=1). Extract it into `data/external/ulaya`. Do not replace it with a similarly named calendar: the required raster is `InRaster/cosecha24.tif` supplied by the author.
 
 ```shell
 python -m zipfile -e data/tfcg_case_data_v0.1.0.zip data/external/ulaya

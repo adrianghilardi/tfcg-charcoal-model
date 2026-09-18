@@ -30,7 +30,7 @@ Audit date: 17 September 2026. Results refer to the newly supplied model and cal
 | Q13 | Software verification complete; no field validation claimed | Independent plot data and harvest histories |
 | Q14 | Quantitative scenario contrasts and annual outputs now available | Current decision, target, actual harvest records and site status |
 | Q15–17 | Not inferable from software | Funding, contributions, competing interests |
-| Q18 | Code, inputs, outputs, tests, figures and release metadata prepared; licences selected | Public records, version DOIs and upstream attribution |
+| Q18 | Code, inputs and outputs published as v0.1.0; DOI 10.5281/zenodo.22822183 verified; all public downloads match local SHA-256 checksums | Complete upstream acquisition provenance and attribution under Q05 |
 
 ## Scope of numerical evidence
 

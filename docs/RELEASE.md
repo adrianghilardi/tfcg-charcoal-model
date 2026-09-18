@@ -1,23 +1,19 @@
-# Publication handoff
+# Published release
 
-The release is prepared for [adrianghilardi/tfcg-charcoal-model](https://github.com/adrianghilardi/tfcg-charcoal-model) and Adrian Ghilardi's personal Zenodo account. Both are outside MoFuSS. The GitHub repository has been created; Zenodo identifiers are added only after verification. MIT code licensing and the choice of CC BY 4.0 for contributed data were authorized by Adrian Ghilardi on 17 September 2026.
+Version 0.1.0 is available in Adrian Ghilardi's personal accounts, outside the MoFuSS organization and Zenodo community.
 
-## Files to preserve
+- [GitHub repository](https://github.com/adrianghilardi/tfcg-charcoal-model)
+- [GitHub research prerelease](https://github.com/adrianghilardi/tfcg-charcoal-model/releases/tag/v0.1.0)
+- [Zenodo archive and version DOI](https://doi.org/10.5281/zenodo.22822183)
+- Archived source commit: `2f89e809af639fad648fb244950e462d86341852`.
+- Concept DOI for all versions: `10.5281/zenodo.22822182`; cite the version DOI above for the analysed code/data.
 
-- Versioned source repository, including the untouched supplied EGOML, tests, configurations, documentation and validation reports.
-- `tfcg_case_data_v0.1.0.zip`: checksummed original analytical inputs and baseline tables, with licence notices.
-- `tfcg_results_v0.1.0.zip`: 100-realization audit, 1,000-realization corrected experiments, native evidence and generated summaries.
-- `SHA256SUMS.txt`: archive checksums. Retain the source commit identifier in the release metadata.
+The Zenodo software record contains exact source, a small input bundle and full numerical results, with a README and SHA-256 checksums. Code is MIT. Contributed data, numerical outputs and figures are CC BY 4.0; licences apply by component. No manuscript has been published with this software record.
 
-The manuscript and BibTeX are maintained separately in the paper workspace. They can be added to a publication archive after coauthor review. Do not invent ORCIDs, affiliations, funders or a manuscript DOI.
+The tag and archived source remain fixed. Later main-branch documentation adds public identifiers and post-release verification; it does not alter the analysed model. The archive README truthfully records that its DOI was reserved at packaging, before publication. Its source README's pending-deposit wording likewise records the prepublication snapshot.
 
-## Publish when the account is available
+## Future versions
 
-1. Push this local main branch to the confirmed personal repository. Use ordinary account authorization; never put access tokens into scripts, Git history, or release metadata.
-2. Confirm the configured GitHub Actions checks succeed on Windows and Linux. Local verification does not establish remote CI success.
-3. Create a Zenodo dataset record for the case-study bundle and numerical results. Use CC BY 4.0, the five authors in manuscript order, the specific version and the supplied description. Include the source commit and link the software record. Reserve a DOI if needed before finalizing documentation; do not cite a reserved DOI as a published accessible record.
-4. Add the verified dataset DOI/download URL to README, manuscript availability statement and any integration test download step. Re-run the workflow using the public download and check its hash.
-5. Link the GitHub repository to the chosen Zenodo account and create the software release. Inspect the resulting Zenodo record, archive contents, version DOI and licence. Alternatively upload the exact source archive manually. Follow the current [Zenodo release guide](https://help.zenodo.org/docs/github/archive-software/github-upload/).
-6. Put the exact version DOIs, date and repository URL in `CITATION.cff`, the paper and the BibTeX file. Preserve the DOI for the particular analysed version; use a new version for later parameter/code changes.
+Retain these inputs and the original implementation. Any change to equations, priors, moisture/feedstock conversion or scheduling requires explicit configurations, reruns, numerical comparisons and a new version. Do not overwrite the published files or move tag v0.1.0. Use a new Zenodo version, update the version-specific citation and archive the exact corresponding source commit. Field calibration and independent evaluation remain scientific tasks separate from software verification.
 
-The metadata templates in `config/` omit unknown identifiers. They are drafts, not proof of deposition. Verify the final record and its downloadable content before describing the archive as public.
+The existing metadata templates describe optional separate software/data deposits; the published record instead combines all three archives with component-specific licences. Their unknown-field instructions are templates for future deposits, not the status of this published record.
