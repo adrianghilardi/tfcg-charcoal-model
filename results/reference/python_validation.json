@@ -1,0 +1,37 @@
+{
+  "slope_full": {
+    "max_abs_diff_reserve": 1.9073486328125e-06,
+    "mismatched_gt_1e-5": 0,
+    "mask_mismatch_10deg": 0,
+    "mask_mismatch_15deg": 0,
+    "mask_mismatch_90deg": 0
+  },
+  "water_distance_full": {
+    "max_abs_diff_reserve": 0.0,
+    "mismatched_gt_1e-5": 0,
+    "mask_mismatch_0m": 0,
+    "mask_mismatch_50m": 0,
+    "mask_mismatch_100m": 0
+  },
+  "AmountFMUBiomMC": {
+    "max_abs_difference": 4.9112713895738125e-11,
+    "first_python": 17624.326950758696,
+    "first_archived": 17624.3269507587,
+    "last_python": 15668.024926960468,
+    "last_archived": 15668.0249269605
+  },
+  "HarvestedBiomassMC": {
+    "max_abs_difference": 4.547473508864641e-13,
+    "first_python": 496.01249980926514,
+    "first_archived": 496.012499809265,
+    "last_python": 395.2158303260803,
+    "last_archived": 395.21583032608
+  },
+  "PotentialCharcoalMC": {
+    "max_abs_difference": 4.973799150320701e-13,
+    "first_python": 99.20249996185302,
+    "first_archived": 99.202499961853,
+    "last_python": 79.04316606521607,
+    "last_archived": 79.0431660652161
+  }
+}

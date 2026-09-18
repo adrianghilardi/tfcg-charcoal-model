@@ -1,0 +1,332 @@
+{
+  "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+  "platform": "Windows-10-10.0.19045-SP0",
+  "packages": {
+    "numpy": "2.5.3",
+    "pandas": "3.0.1",
+    "rasterio": "1.5.1",
+    "scipy": "1.18.1",
+    "matplotlib": "3.11.2"
+  },
+  "seed": 20260917,
+  "elapsed_seconds": 119.5,
+  "experiments": [
+    {
+      "name": "supplied",
+      "k_mean": 86,
+      "k_sd": 0,
+      "q_mean": 0.82,
+      "q_sd": 0,
+      "yield_mean_pct": 20,
+      "yield_sd_pct": 0,
+      "water_buffer_m": 50,
+      "max_slope_deg": 15,
+      "min_biomass_mg_cell": 1,
+      "retained_pct": 10,
+      "start_year": 2015,
+      "rotation_years": 24,
+      "rotations": 2,
+      "realizations": 2,
+      "experiment": "supplied_baseline",
+      "growth": "legacy",
+      "bounded": false,
+      "seed": 20260917,
+      "rng": "NumPy PCG64, independent SeedSequence streams for K, q and kiln yield",
+      "initial_biomass_mc": false
+    },
+    {
+      "name": "reference",
+      "k_mean": 90,
+      "k_sd": 9,
+      "q_mean": 0.82,
+      "q_sd": 0.082,
+      "yield_mean_pct": 19.4,
+      "yield_sd_pct": 4.52,
+      "water_buffer_m": 50,
+      "max_slope_deg": 15,
+      "min_biomass_mg_cell": 1,
+      "retained_pct": 10,
+      "start_year": 2015,
+      "rotation_years": 24,
+      "rotations": 3,
+      "realizations": 1000,
+      "experiment": "corrected_bounded_reference",
+      "growth": "corrected",
+      "bounded": true,
+      "seed": 20260917,
+      "rng": "NumPy PCG64, independent SeedSequence streams for K, q and kiln yield",
+      "initial_biomass_mc": false
+    },
+    {
+      "name": "conservative",
+      "k_mean": 100,
+      "k_sd": 10,
+      "q_mean": 0.75,
+      "q_sd": 0.075,
+      "yield_mean_pct": 23,
+      "yield_sd_pct": 2.66,
+      "water_buffer_m": 100,
+      "max_slope_deg": 10,
+      "min_biomass_mg_cell": 3,
+      "retained_pct": 20,
+      "start_year": 2015,
+      "rotation_years": 24,
+      "rotations": 3,
+      "realizations": 1000,
+      "experiment": "corrected_bounded_conservative",
+      "growth": "corrected",
+      "bounded": true,
+      "seed": 20260917,
+      "rng": "NumPy PCG64, independent SeedSequence streams for K, q and kiln yield",
+      "initial_biomass_mc": false
+    },
+    {
+      "name": "intensive",
+      "k_mean": 80,
+      "k_sd": 8,
+      "q_mean": 0.95,
+      "q_sd": 0.095,
+      "yield_mean_pct": 18.2,
+      "yield_sd_pct": 5.18,
+      "water_buffer_m": 0,
+      "max_slope_deg": 90,
+      "min_biomass_mg_cell": 0,
+      "retained_pct": 1,
+      "start_year": 2015,
+      "rotation_years": 24,
+      "rotations": 3,
+      "realizations": 1000,
+      "experiment": "corrected_bounded_intensive",
+      "growth": "corrected",
+      "bounded": true,
+      "seed": 20260917,
+      "rng": "NumPy PCG64, independent SeedSequence streams for K, q and kiln yield",
+      "initial_biomass_mc": false
+    },
+    {
+      "name": "conservative",
+      "k_mean": 90,
+      "k_sd": 9,
+      "q_mean": 0.82,
+      "q_sd": 0.082,
+      "yield_mean_pct": 19.4,
+      "yield_sd_pct": 4.52,
+      "water_buffer_m": 100,
+      "max_slope_deg": 10,
+      "min_biomass_mg_cell": 3,
+      "retained_pct": 20,
+      "start_year": 2015,
+      "rotation_years": 24,
+      "rotations": 3,
+      "realizations": 1000,
+      "experiment": "corrected_management_only_conservative",
+      "growth": "corrected",
+      "bounded": true,
+      "seed": 20260917,
+      "rng": "NumPy PCG64, independent SeedSequence streams for K, q and kiln yield",
+      "initial_biomass_mc": false
+    },
+    {
+      "name": "intensive",
+      "k_mean": 90,
+      "k_sd": 9,
+      "q_mean": 0.82,
+      "q_sd": 0.082,
+      "yield_mean_pct": 19.4,
+      "yield_sd_pct": 4.52,
+      "water_buffer_m": 0,
+      "max_slope_deg": 90,
+      "min_biomass_mg_cell": 0,
+      "retained_pct": 1,
+      "start_year": 2015,
+      "rotation_years": 24,
+      "rotations": 3,
+      "realizations": 1000,
+      "experiment": "corrected_management_only_intensive",
+      "growth": "corrected",
+      "bounded": true,
+      "seed": 20260917,
+      "rng": "NumPy PCG64, independent SeedSequence streams for K, q and kiln yield",
+      "initial_biomass_mc": false
+    },
+    {
+      "name": "no_harvest",
+      "k_mean": 90,
+      "k_sd": 9,
+      "q_mean": 0.82,
+      "q_sd": 0.082,
+      "yield_mean_pct": 19.4,
+      "yield_sd_pct": 4.52,
+      "water_buffer_m": 50,
+      "max_slope_deg": 15,
+      "min_biomass_mg_cell": 1,
+      "retained_pct": 100,
+      "start_year": 2015,
+      "rotation_years": 24,
+      "rotations": 3,
+      "realizations": 1000,
+      "experiment": "corrected_no_harvest",
+      "growth": "corrected",
+      "bounded": true,
+      "seed": 20260917,
+      "rng": "NumPy PCG64, independent SeedSequence streams for K, q and kiln yield",
+      "initial_biomass_mc": false
+    }
+  ],
+  "checks": {
+    "supplied_baseline": {
+      "elapsed_seconds": 0.0470000000204891,
+      "q_outside_0_1": 0,
+      "nonpositive_K": 0,
+      "invalid_yields": 0,
+      "max_missing_fmu_cells": 0,
+      "max_negative_fmu_cells": 0,
+      "years_with_negative_net_growth": 0,
+      "first_rotation_means": [
+        16574.5041206864,
+        537.5714848140875,
+        107.51429696281748
+      ],
+      "last_rotation_means": [
+        15549.186850393811,
+        531.5678734183311,
+        106.3135746836662
+      ]
+    },
+    "corrected_bounded_reference": {
+      "elapsed_seconds": 19.21899999998277,
+      "q_outside_0_1": 0,
+      "nonpositive_K": 0,
+      "invalid_yields": 0,
+      "max_missing_fmu_cells": 0,
+      "max_negative_fmu_cells": 0,
+      "years_with_negative_net_growth": 0,
+      "first_rotation_means": [
+        16918.187255354267,
+        547.8037213853896,
+        106.12993618221641
+      ],
+      "last_rotation_means": [
+        15397.612384130562,
+        465.61695691770814,
+        90.35969065838752
+      ]
+    },
+    "corrected_bounded_conservative": {
+      "elapsed_seconds": 18.81199999997625,
+      "q_outside_0_1": 0,
+      "nonpositive_K": 0,
+      "invalid_yields": 0,
+      "max_missing_fmu_cells": 0,
+      "max_negative_fmu_cells": 0,
+      "years_with_negative_net_growth": 0,
+      "first_rotation_means": [
+        22378.61857112357,
+        357.2321837778886,
+        82.0914857001932
+      ],
+      "last_rotation_means": [
+        23378.905334659714,
+        380.7002044189771,
+        87.58220938468368
+      ]
+    },
+    "corrected_bounded_intensive": {
+      "elapsed_seconds": 18.67200000002049,
+      "q_outside_0_1": 0,
+      "nonpositive_K": 0,
+      "invalid_yields": 0,
+      "max_missing_fmu_cells": 0,
+      "max_negative_fmu_cells": 0,
+      "years_with_negative_net_growth": 0,
+      "first_rotation_means": [
+        11037.909865182772,
+        666.8718394267584,
+        121.29656283864546
+      ],
+      "last_rotation_means": [
+        3904.550333229396,
+        78.71948544533274,
+        14.307385872995939
+      ]
+    },
+    "corrected_management_only_conservative": {
+      "elapsed_seconds": 20.06300000002375,
+      "q_outside_0_1": 0,
+      "nonpositive_K": 0,
+      "invalid_yields": 0,
+      "max_missing_fmu_cells": 0,
+      "max_negative_fmu_cells": 0,
+      "years_with_negative_net_growth": 0,
+      "first_rotation_means": [
+        19347.204937178678,
+        317.82834822136164,
+        61.55047581143548
+      ],
+      "last_rotation_means": [
+        19805.997208788023,
+        307.26005375840265,
+        59.644691629578844
+      ]
+    },
+    "corrected_management_only_intensive": {
+      "elapsed_seconds": 19.06199999997625,
+      "q_outside_0_1": 0,
+      "nonpositive_K": 0,
+      "invalid_yields": 0,
+      "max_missing_fmu_cells": 0,
+      "max_negative_fmu_cells": 0,
+      "years_with_negative_net_growth": 0,
+      "first_rotation_means": [
+        13092.178300827776,
+        751.5786672587867,
+        145.67097866048874
+      ],
+      "last_rotation_means": [
+        7113.927027208845,
+        369.5954507117658,
+        71.82056688427286
+      ]
+    },
+    "corrected_no_harvest": {
+      "elapsed_seconds": 19.51600000000326,
+      "q_outside_0_1": 0,
+      "nonpositive_K": 0,
+      "invalid_yields": 0,
+      "max_missing_fmu_cells": 0,
+      "max_negative_fmu_cells": 0,
+      "years_with_negative_net_growth": 0,
+      "first_rotation_means": [
+        21902.902987246573,
+        0.0,
+        0.0
+      ],
+      "last_rotation_means": [
+        23566.36611883553,
+        0.0,
+        0.0
+      ]
+    }
+  },
+  "source_model_sha256": "b7a400bdfa85333aa887ff4da42b9dad93c801a08a8c4f598dd3d49f52fdd3af",
+  "outputs": {
+    "annual_results.csv": "0cadd9db4e8ae79057587289ad3fdd8de8a30f0a6d6d54a639854022b73fb5f9",
+    "archive_comparison.json": "c87d82e92baecee059b3f3eb445b2a14e3f042234342ca4b48679d83a9f14e7d",
+    "landscape.json": "ce4d48a363870fec2291da0ad9e5683926b69cf049ae80ba5be2245f1998758d",
+    "rotation_summary.csv": "f45857b07d5d37a6b2ac0a1e8bf6fd60925e4b74d135c1a897049f1c2eae8125",
+    "corrected_bounded_conservative/configuration.json": "0e6f09e3b2f189603849020f262accf302853bfcbd9127d6890c555f8da58619",
+    "corrected_bounded_conservative/results.npz": "9d086d73d14a0b722d7a16559086d0e471ec0d1445a168b7800adff996acc627",
+    "corrected_bounded_intensive/configuration.json": "81f2e088b27df1880c26e2e3cfc0d4758ce2de3fdd72b10d9b2b7ffdb032c251",
+    "corrected_bounded_intensive/results.npz": "7a1ca3bac5bccce114fb0021d5a389f76ec3344c1b20efaf9321f2b9180a8dc6",
+    "corrected_bounded_reference/configuration.json": "9a31fd73216b2c1d11224d43c6054122bbf89a7551de2839c7b54530745296c1",
+    "corrected_bounded_reference/results.npz": "e868701fdb39b4b5cde9cd0b4a8bcc3d40a2036d20a7e455f7e177fcfeba765e",
+    "corrected_management_only_conservative/configuration.json": "276364527e0850e823243e2fb066a09a02fc87c29a7a8e1df678e3c7e2b96c20",
+    "corrected_management_only_conservative/results.npz": "4fe7039d61a19c8938e379060ac4be04d24e9b3798aa18d932b7b2de472275ab",
+    "corrected_management_only_intensive/configuration.json": "a0a2d74a4633beb4c42c2da3dc0af30d9b71d1781080a0d4a48805ccaf5b0507",
+    "corrected_management_only_intensive/results.npz": "01cc2fa26a20b3f56a12391cb261f335f5e9a8e1ec814af6b074fcf4145e4a34",
+    "corrected_no_harvest/configuration.json": "a2beb01a31cd32d3f4cef34e61b69fba43a14f95d833b9fd3f5aa4537a0b2e50",
+    "corrected_no_harvest/results.npz": "07f61d6b712da6acef262adb524059f6a57b14817188c571a5bf6faad3fbcc69",
+    "supplied_baseline/configuration.json": "d28bce149d7808e87a34f84e94a493956733ae88ff1b9f96b8e88b30562a2d70",
+    "supplied_baseline/results.npz": "a4b01556c3a6ab1c98df8ad871b9b0c2225e09745a384ce9bbf32aa7b58a65d9"
+  }
+}

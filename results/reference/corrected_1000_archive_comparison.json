@@ -1,0 +1,17 @@
+{
+  "AmountFMUBiomMC": {
+    "maximum_absolute_difference_mg": 4.9112713895738125e-11,
+    "values_compared": 96,
+    "passed_at_absolute_tolerance_1e-7": true
+  },
+  "HarvestedBiomassMC": {
+    "maximum_absolute_difference_mg": 4.547473508864641e-13,
+    "values_compared": 96,
+    "passed_at_absolute_tolerance_1e-7": true
+  },
+  "PotentialCharcoalMC": {
+    "maximum_absolute_difference_mg": 4.973799150320701e-13,
+    "values_compared": 96,
+    "passed_at_absolute_tolerance_1e-7": true
+  }
+}

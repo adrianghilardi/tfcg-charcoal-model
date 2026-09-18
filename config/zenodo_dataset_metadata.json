@@ -1,0 +1,32 @@
+{
+  "title": "Ulaya Mbuyuni charcoal planning model: analytical inputs and scenario outputs",
+  "upload_type": "dataset",
+  "description": "Version 0.1.0 release candidate. Preserved original model and explicit corrected experiments for 72 scenario years. Archived baseline reproduced; ecological calibration and raw input processing are outside the supplied reproducibility boundary. Software is MIT; case-study data and outputs are CC BY 4.0. Repository URL, source commit and reciprocal record identifiers must be inserted once confirmed.",
+  "creators": [
+    {
+      "name": "Caballero, José Luis"
+    },
+    {
+      "name": "Mwampamba, Tuyeni"
+    },
+    {
+      "name": "Meshack, Charles"
+    },
+    {
+      "name": "Herzog, Sylvia"
+    },
+    {
+      "name": "Ghilardi, Adrian"
+    }
+  ],
+  "version": "0.1.0",
+  "license": "cc-by-4.0",
+  "access_right": "open",
+  "keywords": [
+    "charcoal",
+    "miombo",
+    "Tanzania",
+    "reproducibility",
+    "community forest management"
+  ]
+}

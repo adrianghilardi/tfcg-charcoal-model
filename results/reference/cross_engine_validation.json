@@ -1,0 +1,72 @@
+{
+  "authoritative_native_baseline": {
+    "values_compared": 288,
+    "max_abs_error_mg": [
+      4.9112713895738125e-11,
+      4.547473508864641e-13,
+      9.947598300641403e-14
+    ],
+    "atol_mg": 1e-05,
+    "passed": true,
+    "native_q": [
+      0.82,
+      0.82
+    ],
+    "native_K": [
+      86.0,
+      86.0
+    ]
+  },
+  "native_intensive_legacy": {
+    "values_compared": 216,
+    "max_abs_error_mg": [
+      5.002220859751105e-12,
+      4.405364961712621e-13,
+      7.815970093361102e-14
+    ],
+    "atol_mg": 1e-05,
+    "passed": true,
+    "native_q": [
+      0.95
+    ],
+    "native_K": [
+      80.0
+    ]
+  },
+  "native_intensive_corrected": {
+    "values_compared": 216,
+    "max_abs_error_mg": [
+      4.9112713895738125e-11,
+      4.547473508864641e-13,
+      9.947598300641403e-14
+    ],
+    "atol_mg": 1e-05,
+    "passed": true,
+    "native_q": [
+      0.95
+    ],
+    "native_K": [
+      80.0
+    ]
+  },
+  "native_reference_stochastic": {
+    "values_compared": 648,
+    "max_abs_error_mg": [
+      4.729372449219227e-11,
+      5.115907697472721e-13,
+      1.5631940186722204e-13
+    ],
+    "atol_mg": 1e-05,
+    "passed": true,
+    "native_q": [
+      0.808371111718925,
+      0.729978790827009,
+      0.876023307359363
+    ],
+    "native_K": [
+      86.7667897924664,
+      91.15215616630448,
+      91.075063175608
+    ]
+  }
+}

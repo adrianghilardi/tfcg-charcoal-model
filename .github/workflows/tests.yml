@@ -1,0 +1,22 @@
+name: scientific checks
+on: [push, pull_request]
+jobs:
+  tests:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+      - run: python -m pip install -r requirements-lock.txt
+      - run: python -m pip install --no-deps -e .
+      - run: python -m pytest -q
+      - run: python -m zipfile -e data/tfcg_case_data_v0.1.0.zip data/external/ulaya
+      - run: python scripts/verify_bundle.py data/external/ulaya
+      - run: python scripts/run_experiments.py --source data/external/ulaya --output runs/ci_smoke --realizations 8
+      - run: python scripts/summarize_results.py --main runs/ci_smoke --audit runs/ci_smoke --output results/ci_figures
+      - run: python scripts/plot_inputs.py --source data/external/ulaya --output results/ci_figures

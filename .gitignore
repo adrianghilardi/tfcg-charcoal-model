@@ -1,0 +1,14 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+*.egg-info/
+build/
+dist/
+data/external/
+runs/
+results/ci_figures/
+release/
+.env
+*.log
+Thumbs.db

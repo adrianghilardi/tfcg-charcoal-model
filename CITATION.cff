@@ -1,0 +1,24 @@
+cff-version: 1.2.0
+message: "Please cite the specific archived release once a DOI has been issued."
+title: "Ulaya Mbuyuni charcoal planning model: reproducibility audit and scenario experiments"
+version: 0.1.0
+license: MIT
+repository-code: "https://github.com/adrianghilardi/tfcg-charcoal-model"
+type: software
+authors:
+  - family-names: Caballero
+    given-names: José Luis
+  - family-names: Mwampamba
+    given-names: Tuyeni
+  - family-names: Meshack
+    given-names: Charles
+  - family-names: Herzog
+    given-names: Sylvia
+  - family-names: Ghilardi
+    given-names: Adrian
+keywords:
+  - charcoal
+  - miombo
+  - Tanzania
+  - spatial simulation
+abstract: "A preserved DINAMICA EGO model, a cross-checked Python implementation, and separately labelled corrected experiments for community charcoal planning. Local release candidate; public repository URL and DOI will be added after deposition."

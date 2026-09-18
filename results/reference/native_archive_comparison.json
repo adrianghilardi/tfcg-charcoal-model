@@ -1,0 +1,17 @@
+{
+  "AmountFMUBiomMC": {
+    "values_compared": 96,
+    "maximum_absolute_difference_mg": 0.0,
+    "exactly_equal": true
+  },
+  "HarvestedBiomassMC": {
+    "values_compared": 96,
+    "maximum_absolute_difference_mg": 0.0,
+    "exactly_equal": true
+  },
+  "PotentialCharcoalMC": {
+    "values_compared": 96,
+    "maximum_absolute_difference_mg": 0.0,
+    "exactly_equal": true
+  }
+}

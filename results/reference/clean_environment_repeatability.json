@@ -1,0 +1,19 @@
+{
+  "experiments": {
+    "corrected_bounded_conservative": "identical",
+    "corrected_bounded_intensive": "identical",
+    "corrected_bounded_reference": "identical",
+    "corrected_management_only_conservative": "identical",
+    "corrected_management_only_intensive": "identical",
+    "corrected_no_harvest": "identical",
+    "legacy_bounded_conservative": "identical",
+    "legacy_bounded_intensive": "identical",
+    "legacy_bounded_reference": "identical",
+    "legacy_unbounded_conservative": "identical",
+    "legacy_unbounded_intensive": "identical",
+    "legacy_unbounded_reference": "identical",
+    "supplied_baseline": "identical"
+  },
+  "array_elements_checked": 607876,
+  "passed": true
+}
