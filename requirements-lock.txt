@@ -1,5 +1,5 @@
-# Tested on CPython 3.12.14, Windows x86-64. Linux execution is configured in CI,
-# but has not been observed until a remote workflow has actually run.
+# Full experiments tested on CPython 3.12.14, Windows x86-64.
+# Unit/integration checks also passed in GitHub Actions on Windows and Linux.
 affine==3.0.1
 attrs==26.1.0
 certifi==2026.7.22

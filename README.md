@@ -15,7 +15,7 @@ These checks establish computational reproducibility from the **delivered analyt
 
 ## Install
 
-Use Python 3.12. The observed verification environment was CPython 3.12.14 on Windows x86-64. CI is configured for Windows and Linux but remote CI has not yet run.
+Use Python 3.12. The full local verification environment was CPython 3.12.14 on Windows x86-64. [GitHub Actions checks passed on Windows and Linux](https://github.com/adrianghilardi/tfcg-charcoal-model/actions/runs/35298026545), including nine unit tests, the archived baseline, an eight-realization audit and figure generation. The full 1,000-realization analysis was run locally on Windows.
 
 ```shell
 python -m venv .venv

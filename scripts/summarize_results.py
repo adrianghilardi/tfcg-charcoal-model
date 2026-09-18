@@ -44,12 +44,14 @@ def main():
         axs[-1].set_xlabel('Scenario year');axs[-1].set_xlim(2015,2086)
         fig.subplots_adjust(left=.14,right=.98,top=.91,bottom=.08,hspace=.42)
         save(fig,'figure_'+kind)
-    fig,axs=plt.subplots(1,3,figsize=(6.6,3.2),sharey=True)
+    fig,axs=plt.subplots(1,3,figsize=(6.6,3.2),sharey=True);audit_max=0
     for s,ax in zip(scenarios,axs):
         for prefix,col,ls,lab in [('legacy_bounded','#777777','--','Original equations'),('corrected_bounded','#245e88','-','Corrected equations')]:
             vals=get(a.audit,prefix+'_'+s)['totals'][:,:,2].reshape(-1,3,24).mean(axis=2).mean(axis=0)
+            audit_max=max(audit_max,float(vals.max()))
             ax.plot([1,2,3],vals,color=col,ls=ls,marker='o',label=lab)
         ax.set_title(s.title());ax.set_xticks([1,2,3]);ax.set_xlabel('Rotation');ax.set_ylim(bottom=0);ax.spines[['top','right']].set_visible(False)
+    axs[0].set_ylim(0,audit_max*1.10)
     axs[0].set_ylabel('Mean charcoal (Mg yr$^{-1}$)');axs[0].legend(frameon=False,loc='lower left',bbox_to_anchor=(0,1.17),ncol=2)
     fig.subplots_adjust(left=.10,right=.98,top=.77,bottom=.18,wspace=.18);save(fig,'figure_growth_audit')
     summary=[];paired=[];distributions={}

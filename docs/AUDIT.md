@@ -40,4 +40,4 @@ The 100-run audit and 1,000-run corrected suites answer implementation and scena
 
 ## Observed verification environment
 
-Windows x86-64; CPython 3.12.14; NumPy 2.5.3, Pandas 3.0.1, Rasterio 1.5.1, SciPy 1.18.1, Matplotlib 3.11.2. The complete dependency versions are in `requirements-lock.txt`. DINAMICA EGO 8.3.0.20250117, one processor, predefined native seed, no parallel steps. The native software is not redistributed. GitHub Actions is a separate check and must not be labelled successful before it runs.
+Windows x86-64; CPython 3.12.14; NumPy 2.5.3, Pandas 3.0.1, Rasterio 1.5.1, SciPy 1.18.1, Matplotlib 3.11.2. The complete dependency versions are in `requirements-lock.txt`. DINAMICA EGO 8.3.0.20250117, one processor, predefined native seed, no parallel steps. The native software is not redistributed. GitHub Actions run 35298026545 passed on Windows and Linux: nine tests, baseline reproduction, an eight-realization audit and figure generation. Full native and 1,000-realization experiments were verified locally on Windows.
