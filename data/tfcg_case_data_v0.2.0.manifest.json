@@ -1,11 +1,6 @@
 {
   "files": [
     {
-      "path": "models/ModUlaya_Fun_frost.egoml",
-      "bytes": 99384,
-      "sha256": "b7a400bdfa85333aa887ff4da42b9dad93c801a08a8c4f598dd3d49f52fdd3af"
-    },
-    {
       "path": "InRaster/Biomas_50r0Cs.tif",
       "bytes": 307281,
       "sha256": "090331a23346b6a38c73fe0ca92a57156f21d3327a241549bf64401cc7296075"
@@ -34,37 +29,12 @@
       "path": "TempRaster/charcoalharvB_c.tif",
       "bytes": 23903,
       "sha256": "07c254de6e58f3c37de6f4a781ea17c1669b985b9c42efcb6630f84ceca3e389"
-    },
-    {
-      "path": "TempRaster/proposed_LUP_c.tif",
-      "bytes": 33505,
-      "sha256": "8019e85a7f9b88de6f2d8364e181c46134664c53399431a75bd5dde4cf700913"
-    },
-    {
-      "path": "Intables/rate_growth2.csv",
-      "bytes": 1097,
-      "sha256": "4d3b812394dbcc0b1cf6c04a8bec184984bd2503134802fdee2dd8659f362e1f"
-    },
-    {
-      "path": "MC/Table/AmountFMUBiomMC.csv",
-      "bytes": 2131,
-      "sha256": "9c07449ddc62a8d7f6826db89257388930c100fba36fc5a277d67d37ee6294a8"
-    },
-    {
-      "path": "MC/Table/HarvestedBiomassMC.csv",
-      "bytes": 2135,
-      "sha256": "7502334a0484b393fcf2aa2fddb7fd836ef269da3068881606b7b0675c500442"
-    },
-    {
-      "path": "MC/Table/PotentialCharcoalMC.csv",
-      "bytes": 2135,
-      "sha256": "64a1852447d39d1f2d90e746a8031c8514a0e5acf15558633867fb8e8d0e3ff2"
     }
   ],
   "source": "Jos\u00e9 Luis Caballero model delivery, 17 September 2026, with author-supplied cosecha24.tif",
-  "scope": "Prepared analytical inputs and archived baseline outputs; raw remote-sensing and field-data processing are not supplied.",
+  "scope": "Six analytical rasters required by the Python simulation; raw remote-sensing and field-data processing are not supplied.",
   "licences": {
-    "model": "MIT",
+    "software": "MIT",
     "analytical_inputs_and_outputs": "CC-BY-4.0"
   }
 }

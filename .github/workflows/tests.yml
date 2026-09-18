@@ -15,8 +15,8 @@ jobs:
       - run: python -m pip install -r requirements-lock.txt
       - run: python -m pip install --no-deps -e .
       - run: python -m pytest -q
-      - run: python -m zipfile -e data/tfcg_case_data_v0.1.0.zip data/external/ulaya
+      - run: python -m zipfile -e data/tfcg_case_data_v0.2.0.zip data/external/ulaya
       - run: python scripts/verify_bundle.py data/external/ulaya
       - run: python scripts/run_experiments.py --source data/external/ulaya --output runs/ci_smoke --realizations 8
-      - run: python scripts/summarize_results.py --main runs/ci_smoke --audit runs/ci_smoke --output results/ci_figures
+      - run: python scripts/summarize_results.py --main runs/ci_smoke --output results/ci_figures
       - run: python scripts/plot_inputs.py --source data/external/ulaya --output results/ci_figures

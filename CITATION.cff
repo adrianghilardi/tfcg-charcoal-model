@@ -1,10 +1,10 @@
 cff-version: 1.2.0
 message: "Please cite this version-specific archived software and data package."
 title: "Ulaya Mbuyuni charcoal planning model reproducibility package"
-version: 0.1.0
-doi: 10.5281/zenodo.22822183
-date-released: 2026-09-17
-url: "https://doi.org/10.5281/zenodo.22822183"
+version: 0.2.0
+doi: 10.5281/zenodo.22836156
+date-released: 2026-09-18
+url: "https://doi.org/10.5281/zenodo.22836156"
 license: MIT
 repository-code: "https://github.com/adrianghilardi/tfcg-charcoal-model"
 type: software
@@ -24,4 +24,4 @@ keywords:
   - miombo
   - Tanzania
   - spatial simulation
-abstract: "A preserved DINAMICA EGO model, a cross-checked Python implementation, and separately labelled corrected experiments for community charcoal planning. Research release for coauthor review; archived code, analytical inputs and full numerical outputs are publicly available."
+abstract: "Python spatial simulation of woodland biomass, wood harvest and potential charcoal supply under mapped community forest management rules at Ulaya Mbuyuni, Tanzania. Six analytical rasters, scenario configurations, full numerical outputs, parameter draws and figure scripts support computational reproduction."

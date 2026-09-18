@@ -1,59 +1,32 @@
-# Model specification and revisions
+# Python model specification
 
-## Domain and units
+## Spatial inputs and domain
 
-All used rasters have 557 rows × 696 columns, 25 m cells, and EPSG:32737 (UTM 37S). One cell is 0.0625 ha. The native code divides initial biomass density and K by 16 to obtain Mg/cell. The reporting mask is the non-null calendar footprint: 4,284 cells, 267.75 ha, including 736 zero-calendar cells. Initial reported biomass is 17,420.8125 Mg. The surrounding reserve has 52,789 cells, 3,299.3125 ha; its maximum biomass influences the original growth expression but its biomass is not included in FMU totals.
+The six rasters in `data/tfcg_case_data_v0.2.0.zip` share a 557 × 696 grid in EPSG:32737 at 25 m cell size. One cell is 0.0625 ha. The reserve is the valid footprint of `TempRaster/foresst_reserve_c.tif`. The reporting domain is the intersection of that reserve with valid cells in `InRaster/cosecha24.tif`: 4,214 cells or 263.375 ha. The reserve contains 52,789 cells or 3,299.3125 ha. The reporting domain begins with 17,420.8125 Mg of mapped biomass. The larger valid calendar footprint includes 70 cells outside the reserve and must not be used as the reporting area.
 
-The effective calendar equals `cosecha24.tif` plus the binary presence of `charcoalharvB_c.tif`. This shifts some harvest dates by one year. Zero/one values remain unscheduled. Scheduled area is 221.75 ha. Static eligibility leaves 178.6875, 118.25 and 221.75 ha for reference, conservative and intensive rules before applying the changing biomass threshold. Reporting area is therefore not interchangeable with harvestable area or the older manuscript's 263 ha.
+The calendar is adjusted by adding a binary indicator for valid cells in `TempRaster/charcoalharvB_c.tif`. Stored plot identifiers are not used as numeric increments. Zero or one calendar values are unscheduled. The adjusted first-rotation calendar schedules 3,548 reporting cells, or 221.75 ha. Water and slope rules leave 178.6875, 118.25 and 221.75 ha statically eligible under reference, conservative and intensive rules, respectively; an annual biomass threshold can further reduce harvest.
 
-The 50 × 50 m management plots described in the historical plan differ from the model's 25 m computational cells. This grid adds no observational resolution to the source biomass data. Original acquisition and resampling provenance remain unresolved.
+`TempRaster/DEM_c.tif` supplies elevation in metres. Slope is the maximum absolute gradient to the eight adjacent cells, converted to degrees. `TempRaster/rivers_c.tif` supplies valid water cells; Euclidean distance to them is rounded down to integer metres before comparing it with the buffer. The 25 m grid is computational and does not establish the original observational resolution. Source acquisition and raster preparation remain to be documented by the authors.
 
-## One annual step
+## Annual update
 
-1. Select cells whose effective calendar year equals the current year, repeating every 24 years. A scheduled cell below the biomass threshold waits until the next rotation; it is neither deferred within the rotation nor replaced.
-2. Exclude distance **less than** the water buffer and slope **greater than** the ceiling. Threshold equality is allowed. Slope is the steepest absolute gradient to the eight neighbours in degrees. Distance is Euclidean distance rounded down to integer metres. Native and Python exclusion masks agree for all tested scenario thresholds.
-3. Harvest `H = (1 − retained_pct/100) B` in eligible cells with `B >= minimum`. Store retained biomass in float32.
-4. Apply the chosen growth equation to post-harvest biomass. Report the sum of post-growth FMU stock.
-5. Report wood harvest and `charcoal = harvest × yield_pct/100`. No green-to-dry factor or feedstock-loss factor is used.
+The six configurations in `config/main_1000.json` simulate 2015–2086 in three 24-year rotations. Each year a cell is harvested only when its calendar year matches the year within that rotation, its water distance meets the buffer, its slope is at most the ceiling, and its pre-harvest biomass meets the minimum threshold. Equality is allowed at the thresholds. A cell below the biomass threshold waits until its next scheduled rotation.
 
-The [DINAMICA slope specification](https://dinamicaego.com/dokuwiki/doku.php?id=calc_slope_map) and [map-calculation documentation](https://www.csr.ufmg.br/dokuwiki/doku.php?id=calculate_map) inform the equivalent preprocessing and storage semantics. The checked native outputs remain the numerical reference.
-
-## Original growth equations
-
-Let b be post-harvest Mg/cell, k = K/16, c = exp(3.35898553285285), and M the maximum b over the reserve. The delivered v91 age expression is:
+Let B be pre-harvest biomass in Mg per cell and ρ the retained proportion. In an eligible cell, wood harvest is `(1−ρ)B` and post-harvest stock is `ρB`; otherwise harvest is zero and stock remains B. The model divides biomass density and carrying biomass K by 16 to express both in Mg per 25 m cell. Annual growth is then applied to the post-harvest stock b using k = K/16:
 
 ```
-b < k:  a = log((k/b − 1)/c) / log(0.82)
-b >= k: a = log((M + 0.1/b − 1)/c) / log(0.82)
+0 < b < k:     B_next = k*b / (q*k + (1−q)*b)
+b = 0 or b≥k: B_next = b
 ```
 
-Age is stored in float32. The delivered v90 growth expression then uses the sampled q:
+This is the one-year state update derived from the logistic biomass–age relation `b(a)=k/(1+c q^a)` with `0<q<1`; c cancels from the update. Smaller q implies faster growth. Zero biomass does not recruit, and stock above the sampled k is neither grown nor forcibly reduced. These boundary conditions require ecological evaluation. The model does not explicitly represent species, coppice, fire, grazing or stand structure.
 
-```
-b < k:  next = k / (1 + c*q**(a+1))
-b >= k: next = M + 0.1 / (1 + c*q**(a+1))
-```
+Post-growth stock is summed over the reporting domain. Annual potential charcoal is wood harvest multiplied by the sampled kiln mass yield. There is no moisture conversion or feedstock-loss factor in the computation; consistent biomass and kiln-yield mass bases remain an author query.
 
-This transcription preserves the actual parentheses. The inverse fixes 0.82 while the forward equation uses q. It can therefore decrease biomass without disturbance when q differs from 0.82. The above-k branch can raise a cell to another cell's maximum; it is not an independent logistic update. Neither defect is silently repaired in `legacy` mode. Float32 intermediate states and float64 arithmetic reproduce the tested native totals.
+## Sampling and outputs
 
-## Corrected experiment
+Each scenario has 1,000 realizations. K and q are drawn once per realization, shared by all cells and years; kiln yield is drawn independently each year. Independent NumPy PCG64 child streams use seed 20260917. Normal draws are rejected unless K>0, 0<q<1 and 0<yield<100%. Configured means and SDs describe normals before rejection. In the intensive scenario the accepted q mean is approximately 0.904, below its nominal 0.95. Initial-map uncertainty and correlations are not sampled.
 
-For `0 < b < k`, use `next = k*b / (q*k + (1−q)*b)`. This follows by advancing the same logistic curve one year using the same q in the inverse and forward equations. Zero remains zero. Cells at or above k retain their current biomass. This last rule explicitly assumes neither additional growth nor forced mortality above K; it is a proposed boundary condition requiring ecological review. The constant c cancels in this state update.
+Three combined scenarios vary both harvest rules and biological/kiln assumptions. Two management-only scenarios vary harvest rules while reusing the reference parameter draws. A no-harvest control retains all stock under reference biology. This paired structure isolates management-rule effects within the model.
 
-The corrected update requires K > 0 and 0 < q < 1. Smaller q gives faster recovery. q is dimensionless, not the continuous intrinsic growth rate. A continuous logistic parameter would be −ln(q) per year. The model treats current aggregate biomass as sufficient to determine recovery; it does not explicitly represent coppice, stand structure, species or disturbance.
-
-## Sampling and experiment families
-
-K and q are drawn once per realization, common to the landscape; kiln yield is drawn independently each year and is common to that year's harvest. The supplied baseline has zero SD for all three and two identical realizations. Its separate initial-biomass Monte Carlo flag is off. Python intentionally reproduces that setting; the optional initial-map perturbation branch is not ported.
-
-The audit has three families: original equations with unbounded normals; original equations with bounded normals; corrected equations with bounded normals. Matched bounded experiments share exactly the same parameter arrays, isolating growth changes. The corrected management-only family additionally uses reference K, q and yield draws for every rule set. The no-harvest control retains 100% of biomass under reference biological draws.
-
-Bounded normals use rejection sampling with K > 0, 0 < q < 1 and 0 < yield < 100%. Table parameters are the *pre-truncation* means and SDs, not the accepted distribution moments. Independence, spatial homogeneity and these priors are assumptions, not estimated relationships. The exported draws and sampled-distribution summaries make them inspectable.
-
-PCG64 uses seed 20260917 and independent SeedSequence child streams for K, q and yield. Bulk rejection sampling means a 100-realization run is not necessarily the first 100 entries of a 1,000-realization run. Exact repeatability is tested for the same configuration; Monte Carlo standard errors describe simulation precision, not measurement uncertainty.
-
-## Output definitions
-
-`totals[n, year, quantity]` stores post-growth standing biomass, annual harvested wood and potential charcoal, all in Mg. `diagnostics` stores missing reporting cells, negative reporting cells and annual net growth. Rotation stock means average 24 post-growth stocks. Rotation flow means average 24 annual flows; their sum is the rotation total. Ensemble quantiles refer to realization-level rotation means or to annual ensembles as labelled. They are conditional model intervals, not confidence intervals for observed programme outcomes.
-
-The current recurrence supports this fixed 24-year historical calendar. A longer-rotation test must explicitly regenerate/reallocate the calendar; changing a number without reconsidering scheduled areas is not a defensible sensitivity test. The supplied native eighth-rotation shift is irregular; Python legacy execution rejects more than seven rotations rather than implying general equivalence. All reported new experiments use three rotations.
+`results.npz` stores yearly post-growth standing biomass, harvested wood and potential charcoal, plus diagnostics and every parameter draw. Stocks are in Mg; the other quantities are annual Mg flows. Rotation summaries average each realization's 24 yearly values and then summarize across realizations. The 2.5th and 97.5th percentiles are conditional simulation ranges, not confidence intervals for measured production. Raster inputs, configurations, source code, unit tests, numerical results and figure scripts support computational reproduction from the analytical rasters. Independent field validation and upstream raster reconstruction remain outside this release.

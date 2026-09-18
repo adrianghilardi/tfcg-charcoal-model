@@ -12,3 +12,5 @@ release/
 .env
 *.log
 Thumbs.db
+data/tfcg_case_data_v0.1.0.zip
+data/tfcg_case_data_v0.1.0.manifest.json

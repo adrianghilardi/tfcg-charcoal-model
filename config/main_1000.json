@@ -15,12 +15,7 @@
     "rotation_years": 24,
     "rotations": 3,
     "realizations": 1000,
-    "experiment": "corrected_bounded_conservative",
-    "growth": "corrected",
-    "bounded": true,
-    "seed": 20260917,
-    "rng": "NumPy PCG64, independent SeedSequence streams for K, q and kiln yield",
-    "initial_biomass_mc": false
+    "experiment": "combined_conservative"
   },
   {
     "name": "intensive",
@@ -38,12 +33,7 @@
     "rotation_years": 24,
     "rotations": 3,
     "realizations": 1000,
-    "experiment": "corrected_bounded_intensive",
-    "growth": "corrected",
-    "bounded": true,
-    "seed": 20260917,
-    "rng": "NumPy PCG64, independent SeedSequence streams for K, q and kiln yield",
-    "initial_biomass_mc": false
+    "experiment": "combined_intensive"
   },
   {
     "name": "reference",
@@ -61,12 +51,7 @@
     "rotation_years": 24,
     "rotations": 3,
     "realizations": 1000,
-    "experiment": "corrected_bounded_reference",
-    "growth": "corrected",
-    "bounded": true,
-    "seed": 20260917,
-    "rng": "NumPy PCG64, independent SeedSequence streams for K, q and kiln yield",
-    "initial_biomass_mc": false
+    "experiment": "combined_reference"
   },
   {
     "name": "conservative",
@@ -84,12 +69,7 @@
     "rotation_years": 24,
     "rotations": 3,
     "realizations": 1000,
-    "experiment": "corrected_management_only_conservative",
-    "growth": "corrected",
-    "bounded": true,
-    "seed": 20260917,
-    "rng": "NumPy PCG64, independent SeedSequence streams for K, q and kiln yield",
-    "initial_biomass_mc": false
+    "experiment": "management_conservative"
   },
   {
     "name": "intensive",
@@ -107,12 +87,7 @@
     "rotation_years": 24,
     "rotations": 3,
     "realizations": 1000,
-    "experiment": "corrected_management_only_intensive",
-    "growth": "corrected",
-    "bounded": true,
-    "seed": 20260917,
-    "rng": "NumPy PCG64, independent SeedSequence streams for K, q and kiln yield",
-    "initial_biomass_mc": false
+    "experiment": "management_intensive"
   },
   {
     "name": "no_harvest",
@@ -130,34 +105,6 @@
     "rotation_years": 24,
     "rotations": 3,
     "realizations": 1000,
-    "experiment": "corrected_no_harvest",
-    "growth": "corrected",
-    "bounded": true,
-    "seed": 20260917,
-    "rng": "NumPy PCG64, independent SeedSequence streams for K, q and kiln yield",
-    "initial_biomass_mc": false
-  },
-  {
-    "name": "supplied",
-    "k_mean": 86,
-    "k_sd": 0,
-    "q_mean": 0.82,
-    "q_sd": 0,
-    "yield_mean_pct": 20,
-    "yield_sd_pct": 0,
-    "water_buffer_m": 50,
-    "max_slope_deg": 15,
-    "min_biomass_mg_cell": 1,
-    "retained_pct": 10,
-    "start_year": 2015,
-    "rotation_years": 24,
-    "rotations": 2,
-    "realizations": 2,
-    "experiment": "supplied_baseline",
-    "growth": "legacy",
-    "bounded": false,
-    "seed": 20260917,
-    "rng": "NumPy PCG64, independent SeedSequence streams for K, q and kiln yield",
-    "initial_biomass_mc": false
+    "experiment": "no_harvest"
   }
 ]
