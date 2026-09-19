@@ -1,0 +1,21 @@
+{
+  "title": "Ulaya Mbuyuni charcoal planning model reproducibility package",
+  "upload_type": "software",
+  "description": "Version 0.3.0 provides a free Python spatial simulation of standing woodland biomass, annual wood harvest and potential charcoal supply at Ulaya Mbuyuni, Tanzania. The archive contains five analytical rasters, three documented scenarios, 1,000 Monte Carlo realizations per scenario for 2015–2086, complete numerical outputs, tests and figure scripts. Results are conditional scenarios. Computational reproduction begins with the supplied analytical rasters; upstream map reconstruction and independent ecological validation are outside this release.",
+  "creators": [
+    {"name": "Caballero, José Luis"},
+    {"name": "Mwampamba, Tuyeni"},
+    {"name": "Meshack, Charles"},
+    {"name": "Herzog, Sylvia"},
+    {"name": "Morgan-Brown, Theron"},
+    {"name": "Arbogast, Matokeo"},
+    {"name": "Ghilardi, Adrian"}
+  ],
+  "keywords": ["charcoal", "miombo", "Tanzania", "spatial simulation", "Monte Carlo", "reproducible research"],
+  "license": "cc-by-4.0",
+  "version": "0.3.0",
+  "publication_date": "2026-09-19",
+  "related_identifiers": [
+    {"identifier": "https://github.com/adrianghilardi/tfcg-charcoal-model", "relation": "isSupplementTo", "scheme": "url"}
+  ]
+}

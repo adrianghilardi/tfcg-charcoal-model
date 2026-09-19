@@ -1,12 +1,13 @@
 cff-version: 1.2.0
-message: "Please cite this version-specific archived software and data package."
+message: "Cite this archived software and data release using the metadata below."
 title: "Ulaya Mbuyuni charcoal planning model reproducibility package"
-version: 0.2.0
-doi: 10.5281/zenodo.22836156
-date-released: 2026-09-18
-url: "https://doi.org/10.5281/zenodo.22836156"
+version: 0.3.0
+date-released: 2026-09-19
+doi: 10.5281/zenodo.22847506
+url: "https://github.com/adrianghilardi/tfcg-charcoal-model"
 license: MIT
 repository-code: "https://github.com/adrianghilardi/tfcg-charcoal-model"
+repository-artifact: "https://doi.org/10.5281/zenodo.22847506"
 type: software
 authors:
   - family-names: Caballero
@@ -17,6 +18,10 @@ authors:
     given-names: Charles
   - family-names: Herzog
     given-names: Sylvia
+  - family-names: Morgan-Brown
+    given-names: Theron
+  - family-names: Arbogast
+    given-names: Matokeo
   - family-names: Ghilardi
     given-names: Adrian
 keywords:
@@ -24,4 +29,4 @@ keywords:
   - miombo
   - Tanzania
   - spatial simulation
-abstract: "Python spatial simulation of woodland biomass, wood harvest and potential charcoal supply under mapped community forest management rules at Ulaya Mbuyuni, Tanzania. Six analytical rasters, scenario configurations, full numerical outputs, parameter draws and figure scripts support computational reproduction."
+abstract: "Python spatial simulation of woodland biomass, wood harvest and potential charcoal supply under mapped community forest management rules at Ulaya Mbuyuni, Tanzania. Five analytical rasters, scenario configurations, full numerical outputs, parameter draws and figure scripts support computational reproduction."

@@ -1,0 +1,18 @@
+{
+  "release": "v0.3.0",
+  "doi": "10.5281/zenodo.22847506",
+  "reference_environment": "CPython 3.12.4 on Windows with requirements-lock.txt",
+  "seed": 20260917,
+  "realizations_per_scenario": 1000,
+  "sha256": {
+    "annual_results.csv": "8dc742c35bf3864a149af1b1ce13f10aade4b3c2e23b149e61793c869f347ae5",
+    "conservative/configuration.json": "0d9585558100b384e1572a0b84932318da806e51cebda153ae42770165a325e6",
+    "conservative/results.npz": "8b2d094c28b5558a3dbc9d69c0f5e2f201029acb2abb18404a7737c3bb7e3be4",
+    "intensive/configuration.json": "4d4920705c6b849a9899556380fc01c8e675f722fa215dd253fd6be5720c5caf",
+    "intensive/results.npz": "f99af3d1e7ffc72bdb1e567720651cf9753b33d895644c1e9a6843c8a9e5438b",
+    "landscape.json": "c143ed9d59712ea227cc9d81f482211ebe464580031336430842e669007b6d7e",
+    "reference/configuration.json": "0639fe8590d06979a21586907f5ee1125ec25fe17659f91e510417c80a577afa",
+    "reference/results.npz": "901e669de383634bf979d8b7ff3afc3fceac26f63debed0acae4326a26f5ca9a",
+    "rotation_summary.csv": "961665748e1e9dddbfb64b5ab237b14ff3215184921747634ad297d1d2137bd1"
+  }
+}

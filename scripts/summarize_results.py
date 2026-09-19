@@ -1,4 +1,4 @@
-"""Build manuscript figures, Monte Carlo precision and paired comparisons."""
+"""Build three-scenario figures and Monte Carlo summaries."""
 from pathlib import Path
 import argparse,json,csv,hashlib
 import numpy as np
@@ -18,50 +18,50 @@ def main():
         fig.savefig(a.output/(name+'.pdf'),metadata={'CreationDate':None,'ModDate':None})
         plt.close(fig)
     colors=['#245e88','#2f7954','#bd4d28'];scenarios=['reference','conservative','intensive']
+    reference_config=json.loads((a.main/'reference'/'configuration.json').read_text(encoding='utf8'))
+    start_year=reference_config['start_year']
+    rotation_years=reference_config['rotation_years']
+    rotations=reference_config['rotations']
     plt.rcParams.update({'font.family':'DejaVu Sans','font.size':9,'axes.labelsize':9,'legend.fontsize':8,'pdf.fonttype':42})
-    for kind in ['combined','management']:
-        fig,axs=plt.subplots(3,1,figsize=(6.5,7.4),sharex=True)
-        for s,col,ls in zip(scenarios,colors,['-','--',':']):
-            name='combined_'+s if kind=='combined' or s=='reference' else 'management_'+s
-            vals=get(a.main,name)['totals'];years=np.arange(2015,2015+vals.shape[1])
-            for q,ax in enumerate(axs):
-                lo,hi=np.quantile(vals[:,:,q],[.025,.975],axis=0)
-                ax.fill_between(years,lo,hi,color=col,alpha=.10,linewidth=0)
-                ax.plot(years,vals[:,:,q].mean(axis=0),color=col,ls=ls,lw=1.5,label=s.title())
-        if kind=='management':
-            vals=get(a.main,'no_harvest')['totals']
-            axs[0].plot(years,vals[:,:,0].mean(axis=0),color='#555555',ls='-.',lw=1.2,label='No harvest')
-        for i,ax in enumerate(axs):
-            ax.set_title(['(a) Standing biomass after growth','(b) Annual wood harvest','(c) Potential charcoal production'][i],loc='left',fontsize=10)
-            ax.set_ylabel(['Mg','Mg yr$^{-1}$','Mg yr$^{-1}$'][i]);ax.set_ylim(bottom=0)
-            for x in [2038.5,2062.5]:ax.axvline(x,color='#aaaaaa',ls='--',lw=.7)
-            ax.spines[['top','right']].set_visible(False);ax.grid(axis='y',color='#e3e3e3',lw=.5)
-            ax.yaxis.set_major_formatter(StrMethodFormatter('{x:,.0f}'))
-        axs[0].legend(ncol=4 if kind=='management' else 3,loc='lower left',bbox_to_anchor=(0,1.16),frameon=False)
-        axs[-1].set_xlabel('Scenario year');axs[-1].set_xlim(2015,2086)
-        fig.subplots_adjust(left=.14,right=.98,top=.91,bottom=.08,hspace=.42)
-        save(fig,'figure_'+kind)
-    summary=[];paired=[];distributions={}
-    ref=get(a.main,'combined_reference')
-    for folder in sorted(a.main.iterdir()):
-        if not (folder/'results.npz').exists():continue
-        d=get(a.main,folder.name);x=d['totals'];n,ny,_=x.shape
-        means=x.reshape(n,ny//24,24,3).mean(axis=2)
-        distributions[folder.name]={k:{'mean':float(d[k].mean()),'sd':float(d[k].std(ddof=1)),'min':float(d[k].min()),'max':float(d[k].max())} for k in ['k_ha','q','yield_pct']}
-        for r in range(ny//24):
+    required=[a.main/s/'results.npz' for s in scenarios]
+    if not all(path.exists() for path in required):
+        raise FileNotFoundError(f'Missing scenario result: {[str(path) for path in required if not path.exists()]}')
+    fig,axs=plt.subplots(3,1,figsize=(6.5,7.4),sharex=True)
+    for s,col,ls in zip(scenarios,colors,['-','--',':']):
+        vals=get(a.main,s)['totals'];years=np.arange(start_year,start_year+vals.shape[1])
+        for q,ax in enumerate(axs):
+            lo,hi=np.quantile(vals[:,:,q],[.025,.975],axis=0)
+            ax.fill_between(years,lo,hi,color=col,alpha=.10,linewidth=0)
+            ax.plot(years,vals[:,:,q].mean(axis=0),color=col,ls=ls,lw=1.5,label=s.title())
+    for i,ax in enumerate(axs):
+        ax.set_title(['(a) Standing biomass after growth','(b) Annual wood harvest','(c) Potential charcoal production'][i],loc='left',fontsize=10)
+        ax.set_ylabel(['Mg','Mg yr$^{-1}$','Mg yr$^{-1}$'][i]);ax.set_ylim(bottom=0)
+        for r in range(1,rotations):ax.axvline(start_year+r*rotation_years-.5,color='#aaaaaa',ls='--',lw=.7)
+        ax.spines[['top','right']].set_visible(False);ax.grid(axis='y',color='#e3e3e3',lw=.5)
+        ax.yaxis.set_major_formatter(StrMethodFormatter('{x:,.0f}'))
+    axs[0].legend(ncol=3,loc='lower left',bbox_to_anchor=(0,1.16),frameon=False)
+    axs[-1].set_xlabel('Scenario year');axs[-1].set_xlim(start_year,start_year+rotations*rotation_years-1)
+    fig.subplots_adjust(left=.14,right=.98,top=.91,bottom=.08,hspace=.42)
+    save(fig,'figure_scenarios')
+    summary=[];distributions={}
+    for scenario in scenarios:
+        folder=a.main/scenario
+        d=get(a.main,scenario);x=d['totals'];n,ny,_=x.shape
+        config=json.loads((folder/'configuration.json').read_text(encoding='utf8'))
+        if (config['start_year'],config['rotation_years'],config['rotations']) != (start_year,rotation_years,rotations):
+            raise ValueError(f'Incompatible time horizon in {folder.name}')
+        means=x.reshape(n,rotations,rotation_years,3).mean(axis=2)
+        distributions[scenario]={k:{'mean':float(d[k].mean()),'sd':float(d[k].std(ddof=1)),'min':float(d[k].min()),'max':float(d[k].max())} for k in ['k_ha','q','yield_pct']}
+        for r in range(rotations):
             for q,quantity in enumerate(['standing_biomass','harvest','charcoal']):
-                v=means[:,r,q];summary.append([folder.name,r+1,quantity,n,v.mean(),np.quantile(v,.025),np.quantile(v,.975),v.std(ddof=1)/np.sqrt(n)])
-        if folder.name.startswith('management_'):
-            assert all(np.array_equal(d[k],ref[k]) for k in ['k_ha','q','yield_pct'])
-            delta=means-ref['totals'].reshape(n,3,24,3).mean(axis=2)
-            for r in range(3):
-                for q,quantity in enumerate(['standing_biomass','harvest','charcoal']):
-                    v=delta[:,r,q];paired.append([folder.name,r+1,quantity,v.mean(),np.quantile(v,.025),np.quantile(v,.975),float(np.mean(v>0)),v.std(ddof=1)/np.sqrt(n)])
-    for name,header,rows in [('precision_summary.csv',['experiment','rotation','quantity','realizations','mean','q025','q975','monte_carlo_standard_error'],summary),('paired_management_differences.csv',['experiment','rotation','quantity','mean_difference','q025_difference','q975_difference','fraction_positive','monte_carlo_standard_error'],paired)]:
-        with (a.output/name).open('w',newline='',encoding='utf8') as f:w=csv.writer(f);w.writerow(header);w.writerows(rows)
+                v=means[:,r,q];summary.append([scenario,r+1,quantity,n,v.mean(),np.quantile(v,.025),np.quantile(v,.975),v.std(ddof=1)/np.sqrt(n)])
+    with (a.output/'precision_summary.csv').open('w',newline='',encoding='utf8') as f:
+        w=csv.writer(f)
+        w.writerow(['scenario','rotation','quantity','realizations','mean','q025','q975','monte_carlo_standard_error'])
+        w.writerows(summary)
     (a.output/'sampled_distributions.json').write_text(json.dumps(distributions,indent=2),encoding='utf8')
     provenance={p.parent.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted(a.main.glob('*/results.npz'))}
-    (a.output/'figure_inputs.json').write_text(json.dumps(provenance,indent=2),encoding='utf8')
+    (a.output/'result_hashes.json').write_text(json.dumps(provenance,indent=2),encoding='utf8')
     print('Figures and summaries:',a.output)
 
 if __name__=='__main__':main()
